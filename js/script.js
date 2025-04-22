@@ -359,7 +359,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameBoard = document.getElementById('gameBoard');
     const gameStatus = document.getElementById('gStatus');
     const resetBtn = document.getElementById('resetGame');
-  
+   
+       
   let board = ['', '', '', '', '', '', '', '', ''];
   let currentPlayer = 'X';
   let gameActive = true;
