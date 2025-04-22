@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="cs/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <video autoplay muted loop id="backgroundVideo"></video>
+    <h1 class="title-overlay">Cozy Study Time</h1>
+
+
+
+    <!-- -------------------------POMODORO TIMER---------------------------- -->
+
+
+
+
+    <!-- --------------------------BUNNY ICON-------------------------------- -->
+
+
+
+
+    
+    <div id="bottom">
+        <div id="bottom-left">
+            <button id="musicBtn"><i class="fa-solid fa-music"></i></button>
+            <button id="soundBtn"><i class="fas fa-volume-up"></i></button>
+        </div>
+        
+        <div id="bottom-right">
+            <button id="videoSelectBtn"><i class="fas fa-palette"></i></button>
+            <button id="settingsBtn"><i class="fa fa-cog"></i></button>
+            <button id="fullscreenBtn"><i class="fas fa-expand"></i></button>
+        </div>
+    </div>
+
+
+    <!-- Theme Side Panel -->
+    <div id="themePanel" class="hidden">
+        <button id="closePanelBtn">&times;</button>
+        <h2>Theme Options</h2>
+
+        <div class="theme-section">
+            <h3>Videos</h3>
+            <div class="theme-options">
+                <button class="theme-item" data-type="video" data-src="videos/snow.mp4">
+                    <video src="videos/snow.mp4" muted loop playsinline></video>
+                </button>
+            
+                <button class="theme-item" data-type="video" data-src="videos/cozy-cafe.mp4">
+                    <video src="videos/cozy-cafe.mp4" muted loop playsinline></video>
+                </button>
+            
+                <button class="theme-item" data-type="video" data-src="videos/rainy-window.mp4">
+                    <video src="videos/rainy-window.mp4" muted loop playsinline></video>
+                </button>
+            
+                <button class="theme-item" data-type="video" data-src="videos/fireplace.mp4">
+                    <video src="videos/fireplace.mp4" muted loop playsinline></video>
+                </button>
+            
+                <button class="theme-item" data-type="video" data-src="videos/leaf-water.mp4">
+                    <video src="videos/leaf-water.mp4" muted loop playsinline></video>
+                </button>
+            </div>
+        </div>
+    
+        <div class="theme-section">
+            <h3>Photos</h3>
+            <div class="theme-options">
+                <div class="theme-item" data-type="photo" data-src="photos/bg-1.png">
+                    <img src="photos/bg-1.png" alt="Photo 1">
+                </div>
+                <div class="theme-item" data-type="photo" data-src="photos/bg-2.png">
+                    <img src="photos/bg-2.png" alt="Photo 2">
+                </div>
+                <div class="theme-item" data-type="photo" data-src="photos/bg-3.png">
+                    <img src="photos/bg-3.png" alt="Photo 3">
+                </div>
+                <div class="theme-item" data-type="photo" data-src="photos/bg-4.png">
+                    <img src="photos/bg-4.png" alt="Photo 4">
+                </div>
+                <div class="theme-item" data-type="photo" data-src="photos/bg-5.jpeg">
+                    <img src="photos/bg-5.jpeg" alt="Photo 5">
+                </div>
+                <div class="theme-item" data-type="photo" data-src="photos/bg-6.png">
+                    <img src="photos/bg-6.png" alt="Photo 6">
+                </div>
+                <div class="theme-item" data-type="photo" data-src="photos/bg-7.png">
+                    <img src="photos/bg-7.png" alt="Photo 7">
+                </div>
+                <div class="theme-item" data-type="photo" data-src="photos/bg-8.jpg">
+                    <img src="photos/bg-8.jpg" alt="Photo 8">
+                </div>
+                <div class="theme-item" data-type="photo" data-src="photos/bg-9.jpg">
+                    <img src="photos/bg-9.jpg" alt="Photo 9">
+                </div>
+                <div class="theme-item" data-type="photo" data-src="photos/bg-10.jpg">
+                    <img src="photos/bg-10.jpg" alt="Photo 10">
+                </div>
+                <div class="theme-item" data-type="photo" data-src="photos/bg-11.png">
+                    <img src="photos/bg-11.png" alt="Photo 11">
+                </div>
+            </div>            
+        </div>
+    
+        <div class="theme-section">
+            <h3>Solid Colors</h3>
+            <div class="theme-options">
+                <div class="theme-item" style="background-color: #3f8686;" data-type="color" data-src="#3f8686"></div>
+                <div class="theme-item" style="background-color: #487a4e;" data-type="color" data-src="#487a4e"></div>
+                <div class="theme-item" style="background-color: #c16464;" data-type="color" data-src="#c16464"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Music Side Panel -->
+    <div id="musicPanel" class="hidden">
+        <button id="closeMusicPanel">&times;</button>
+        <h2>Music</h2>
+
+        <div id="nowPlaying"></div>
+
+        <div class="music-section">
+            <h3>Chill Study</h3>
+            
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0Bcj27aw78d1U9hLt4WK4u?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>            
+            
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4tpc6aQQQXpZvnrWjd5bQB?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6Pm2a6RZd2MIUnoyjS1PJr?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>        
+        </div>
+
+        <div class="music-section">
+            <h3>Ambience</h3>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0y2nodSbxwfKhbzHEuWFM7?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/473P7SEuWS5XywS7cxXkL0?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6rN83mkuK7BwioH9qpHw7O?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+
+        <div class="music-section">
+            <h3>Lo-Fi</h3>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2uDVS1t0HqMnczrWgA1xcJ?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4eWBwGl0c5wtp6k5Krp6My?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <br> <br> 
+        </div>
+    </div>
+    
+
+    <!-- SOUND BUTTON -->
+    <div id="soundPanel" class="hidden">
+        <button id="closeSoundPanel">&times;</button>
+        <h2>Sounds</h2>
+
+        <div class="sound-section">
+            <h3>Nature Sounds</h3>
+
+            <div class="sound-card">
+                <h4>Ocean Waves</h4>
+                <audio controls loop>
+                    <source src="sounds/nature-ocean-waves.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="sound-card">
+                <h4>Rain</h4>
+                <audio controls loop>
+                    <source src="sounds/nature-rain.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="sound-card">
+                <h4>Stream</h4>
+                <audio controls loop>
+                    <source src="sounds/nature-stream.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+
+        <div class="sound-section">
+            <h3>Noises</h3>
+
+            <div class="sound-card">
+                <h4>Brown</h4>
+                <audio controls loop>
+                    <source src="sounds/noise-brown.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="sound-card">
+                <h4>Pink</h4>
+                <audio controls loop>
+                    <source src="sounds/noise-pink.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+           
+
+            <div class="sound-card">
+                <h4>White</h4>
+                <audio controls loop>
+                    <source src="sounds/noise-white.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+
+        <div class="sound-section">
+            <h3>Other Sounds</h3>
+
+            <div class="sound-card">
+                <h4>Music Box</h4>
+                <audio controls loop>
+                    <source src="sounds/calm-music-box.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="sound-card">
+                <h4>Soft Piano</h4>
+                <audio controls loop>
+                    <source src="sounds/calm-soft-piano.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="sound-card">
+                <h4>Lullaby</h4>
+                <audio controls loop>
+                    <source src="sounds/calm-spanish-lullaby.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+        <br> <br> 
+    </div>
+
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>
