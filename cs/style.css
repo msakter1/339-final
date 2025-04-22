@@ -24,6 +24,9 @@ body {
     background-position: center;
     width: 100%;
     height: 100vh;
+
+    justify-content: center;
+    align-items: center;
 }
 
 html{
@@ -47,11 +50,15 @@ h1 {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 2px 2px 8px rgb(0, 0, 0);
+    text-shadow: 6px 6px 12px rgba(11, 10, 67, 0.7);
 
     position: relative;
     display: inline-block;
     padding: 0 12px;
+
+    background-color: rgba(174, 171, 171, 0.4);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
 }
 
 .title-overlay {
@@ -59,7 +66,207 @@ h1 {
     padding: 8px 16px;
     border-radius: 8px;
     color: white;
+
+    text-shadow: 0 0 0.15em #000000;
 }
+
+
+
+/* -------------------------------TASK LIST------------------------------ */
+/* ---------------------------------------------------------------------- */
+/* Task Popup Styles */
+    #taskPopup {
+        position: fixed;
+        left: 40px;
+        top: 200px;
+        width: 300px;
+        max-height: 80vh;
+
+        z-index: 1000;
+        border-radius: 8px;
+        overflow: hidden;
+        resize: both;
+        min-width: 250px;
+        min-height: 200px;
+
+        background-color: rgba(255, 255, 255, 0.1); 
+        backdrop-filter: blur(10px); 
+        border-radius: 20px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    }
+  
+    #taskPopup.hidden {
+        display: none;
+    }
+  
+  .task-popup-header {
+    padding: 15px;
+    background: rgba(33, 61, 93, 0.9);
+    color: white;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .task-popup-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .task-popup-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 100px);
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+  
+  .task-input-container {
+    display: flex;
+    margin-bottom: 15px;
+  }
+  
+  #newTaskInput {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+  }
+  
+  #addTaskBtn {
+    padding: 8px 15px;
+    background:  rgba(33, 61, 93, 0.9);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+  
+  #addTaskBtn i {
+    color: white;
+  }
+
+  #taskList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+  
+  .task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .task-item:last-child {
+    border-bottom: none;
+  }
+  
+  .delete-task {
+    color: #ff4444;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+
+
+/* ----------------------------POMODORO TIMER---------------------------- */
+/* ---------------------------------------------------------------------- */
+.center-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.timer-container {
+    background-color: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); 
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.mode-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.mode-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-weight: bold;
+    font-size: medium;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-buttons button.active {
+    background: #ffffff;
+    color: #333;
+    font-weight: bold;
+}
+
+.timer-display {
+    font-size: 6rem;
+    font-weight: 900;
+    margin: 20px 0;
+    color: white;
+    font-family: "Degular Bold", sans-serif;
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.control-buttons button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.control-buttons button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+
 
 /* ---------------------------BOTTOM BUTTONS---------------------------- */
 /* --------------------------------------------------------------------- */
@@ -91,7 +298,6 @@ h1 {
 }
 
 #bottom button:hover {
-    /* background-color: var(--slate-blue); */
     background: transparent;
     border: 2px solid white;
 }
@@ -209,7 +415,6 @@ i {
 
 .theme-item:hover {
     transform: scale(1.02);
-    /* box-shadow: 0 16px 16px rgba(92, 234, 212, 0.2); */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -369,18 +574,6 @@ body.panel-open::before {
     border-radius: 4px;
 }
 
-#nowPlaying {
-    margin-bottom: 12px;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-#nowPlaying:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-}
-
 
 
 /* -----------------------------SOUND BUTTON----------------------------------- */
@@ -413,27 +606,6 @@ body.panel-open::before {
     gap: 0.5rem;
     padding: 1rem;
 }
-
-/* .sound-card {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    padding: 1rem;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.sound-card h4 {
-    margin: 0 0 10px 0;
-    font-size: 1.1rem;
-    color: #f0f0f0;
-}
-
-.sound-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-} */
 
 .sound-card {
     background: var(--slate-blue);
@@ -473,3 +645,106 @@ body.panel-open::before {
     width: 200px;
     height: 37px;
 }
+
+
+/* --------------------------------Game---------------------------------- */
+/* ---------------------------------------------------------------------- */
+.top-right-btn {
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    background-color: white;
+    color: var(--slate-blue);
+    border: 2px solid transparent; 
+    cursor: pointer;
+    z-index: 100;  
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 2px 2px 8px rgb(0, 0, 0);
+    display: inline-block;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    
+    width: 60px;
+    height: 50px;
+  }
+  
+  #gamePopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    border-radius: 10px;
+    z-index: 1000;
+    padding: 15px;
+
+    background-color: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); 
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  #gamePopup.hidden {
+    display: none;
+  }
+  
+  .game-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .game-popup-header h3 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .game-status {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #4CAF50;
+  }
+  
+  .game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .game-cell {
+    width: 100%;
+    height: 80px;
+    background: rgba(204, 204, 204, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  
+  .game-cell:hover {
+    background: rgba(215, 214, 214, 0.2);
+  }
+  
+  .reset-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(33, 61, 93, 0.9);;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .reset-btn:hover {
+    background-color: rgba(47, 87, 134, 0.9);;
+  }

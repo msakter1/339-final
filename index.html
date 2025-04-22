@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="cs/style.css">
     <title>Document</title>
 </head>
@@ -11,10 +12,60 @@
     <video autoplay muted loop id="backgroundVideo"></video>
     <h1 class="title-overlay">Cozy Study Time</h1>
 
+    <!-- ----------------------------GAME----------------------------------- -->
+    <button id="gameBtn" class="top-right-btn" aria-label="Open Games">
+        <i class="fas fa-gamepad"></i>
+    </button>
+      
+    <div id="gamePopup" class="hidden">
+        <div class="game-popup-header">
+            <h3>Tic-Tac-Toe</h3>
+            <button id="closeGamePopup" class="close-btn">&times;</button>
+        </div>
+        <div class="game-popup-content">
+            <div class="gameStatus" id="gStatus">Your turn (X)</div>
+            <div class="game-board" id="gameBoard"></div>
+            <button id="resetGame" class="reset-btn">Reset Game</button>
+        </div>
+    </div>
+
+    <!-- -----------------------------TASK LIST----------------------------- -->
+    <div id="taskPopup" class="hidden">
+        <div class="task-popup-header">
+          <h3>Task List</h3>
+          <button id="closeTaskPopup" class="close-btn" aria-label="Note Close Button">&times;</button>
+        </div>
+        <div class="task-popup-content">
+          <div class="task-input-container">
+            <input type="text" id="newTaskInput" placeholder="Add a new task..." aria-label="Enter in a Task Button">
+            <button id="addTaskBtn" aria-label="Note Add Button"><i class="fas fa-plus"></i></button>
+          </div>
+          <ul id="taskList"></ul>
+        </div>
+      </div>
 
 
     <!-- -------------------------POMODORO TIMER---------------------------- -->
-
+    <div class="center-timer">
+        <div class="timer-container">
+            <div class="mode-buttons">
+                <button class="active" id="pomodoroBtn" onclick="setMode('pomodoro')">Pomodoro</button>
+                <button id="shortBreakBtn" onclick="setMode('short')">Short Break</button>
+                <button id="longBreakBtn" onclick="setMode('long')">Long Break</button>
+            </div>
+            
+            <div class="timer-display" id="timer">25:00</div>
+            
+            <div class="control-buttons">
+                <button id="playPause" onclick="toggleTimer()" aria-label="Video Play/Pause Button">
+                    <i class="fa fa-play" id="playPauseIcon"></i>
+                </button>
+                <button id="rewind" onclick="resetTimer()" aria-label="Video Rewind Button">
+                    <i class="bi bi-rewind"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -23,46 +74,48 @@
 
 
 
-    
+     <!-- ---------------------------------------BUTTONS----------------------------------------- -->
     <div id="bottom">
         <div id="bottom-left">
-            <button id="musicBtn"><i class="fa-solid fa-music"></i></button>
-            <button id="soundBtn"><i class="fas fa-volume-up"></i></button>
+            <button id="musicBtn" aria-label="Open Music Panel Button"><i class="fa-solid fa-music"></i></button>
+            <button id="soundBtn" aria-label="Open Sound Panel Button"><i class="fas fa-volume-up"></i></button>
+            <button id="noteBtn" aria-label="Open Task List Button"><i class="fas fa-sticky-note"></i></button>
         </div>
         
         <div id="bottom-right">
-            <button id="videoSelectBtn"><i class="fas fa-palette"></i></button>
-            <button id="settingsBtn"><i class="fa fa-cog"></i></button>
-            <button id="fullscreenBtn"><i class="fas fa-expand"></i></button>
+            <button id="videoSelectBtn" aria-label="Open Theme Panel Button"><i class="fas fa-palette"></i></button>
+            <button id="settingsBtn" aria-label="Open Settings Panel Button"><i class="fa fa-cog"></i></button>
+            <button id="fullscreenBtn" aria-label="Fullscreen button"><i class="fas fa-expand"></i></button>
         </div>
     </div>
 
 
-    <!-- Theme Side Panel -->
+    <!-- ----------------------------------Theme Side Panel--------------------------------------- -->
+    <!-- ----------------------------------------------------------------------------------------- -->
     <div id="themePanel" class="hidden">
-        <button id="closePanelBtn">&times;</button>
+        <button id="closePanelBtn" aria-label="Close Theme Panel Button">&times;</button>
         <h2>Theme Options</h2>
 
         <div class="theme-section">
             <h3>Videos</h3>
             <div class="theme-options">
-                <button class="theme-item" data-type="video" data-src="videos/snow.mp4">
+                <button class="theme-item" aria-label="Video Background Button" data-type="video" data-src="videos/snow.mp4">
                     <video src="videos/snow.mp4" muted loop playsinline></video>
                 </button>
             
-                <button class="theme-item" data-type="video" data-src="videos/cozy-cafe.mp4">
+                <button class="theme-item" aria-label="Video Background Button" data-type="video" data-src="videos/cozy-cafe.mp4">
                     <video src="videos/cozy-cafe.mp4" muted loop playsinline></video>
                 </button>
             
-                <button class="theme-item" data-type="video" data-src="videos/rainy-window.mp4">
+                <button class="theme-item"  aria-label="Video Background Button" data-type="video" data-src="videos/rainy-window.mp4">
                     <video src="videos/rainy-window.mp4" muted loop playsinline></video>
                 </button>
             
-                <button class="theme-item" data-type="video" data-src="videos/fireplace.mp4">
+                <button class="theme-item"  aria-label="Video Background Button" data-type="video" data-src="videos/fireplace.mp4">
                     <video src="videos/fireplace.mp4" muted loop playsinline></video>
                 </button>
             
-                <button class="theme-item" data-type="video" data-src="videos/leaf-water.mp4">
+                <button class="theme-item"  aria-label="Video Background Button"data-type="video" data-src="videos/leaf-water.mp4">
                     <video src="videos/leaf-water.mp4" muted loop playsinline></video>
                 </button>
             </div>
@@ -72,37 +125,37 @@
             <h3>Photos</h3>
             <div class="theme-options">
                 <div class="theme-item" data-type="photo" data-src="photos/bg-1.png">
-                    <img src="photos/bg-1.png" alt="Photo 1">
+                    <img src="photos/bg-1.png" alt="Toroto from Kiki's Delivery Service Sitting underneath a shed">
                 </div>
                 <div class="theme-item" data-type="photo" data-src="photos/bg-2.png">
-                    <img src="photos/bg-2.png" alt="Photo 2">
+                    <img src="photos/bg-2.png" alt="Totoro from Kiki's delivery Service in the rain under a umbrella">
                 </div>
                 <div class="theme-item" data-type="photo" data-src="photos/bg-3.png">
-                    <img src="photos/bg-3.png" alt="Photo 3">
+                    <img src="photos/bg-3.png" alt="Totoro from Kiki's delivery service in a straw hat sitting underneath a tree">
                 </div>
                 <div class="theme-item" data-type="photo" data-src="photos/bg-4.png">
-                    <img src="photos/bg-4.png" alt="Photo 4">
+                    <img src="photos/bg-4.png" alt="Totoro from Kiki's delivery service in a meadow of flowers">
                 </div>
                 <div class="theme-item" data-type="photo" data-src="photos/bg-5.jpeg">
-                    <img src="photos/bg-5.jpeg" alt="Photo 5">
+                    <img src="photos/bg-5.jpeg" alt="a girl painting in a field under a umbrella shade">
                 </div>
                 <div class="theme-item" data-type="photo" data-src="photos/bg-6.png">
-                    <img src="photos/bg-6.png" alt="Photo 6">
+                    <img src="photos/bg-6.png" alt="anime drawing of a house on a hill with a bright blue sky">
                 </div>
                 <div class="theme-item" data-type="photo" data-src="photos/bg-7.png">
-                    <img src="photos/bg-7.png" alt="Photo 7">
+                    <img src="photos/bg-7.png" alt="An artistic drawing of a robot in a shore looking up at a floating castle">
                 </div>
                 <div class="theme-item" data-type="photo" data-src="photos/bg-8.jpg">
-                    <img src="photos/bg-8.jpg" alt="Photo 8">
+                    <img src="photos/bg-8.jpg" alt="A girl and boy flying on a flying machine looking at the floating castle in the sky ">
                 </div>
                 <div class="theme-item" data-type="photo" data-src="photos/bg-9.jpg">
-                    <img src="photos/bg-9.jpg" alt="Photo 9">
+                    <img src="photos/bg-9.jpg" alt="A girl riding on a wolf with a spear on her hand in a blue glowing field">
                 </div>
                 <div class="theme-item" data-type="photo" data-src="photos/bg-10.jpg">
-                    <img src="photos/bg-10.jpg" alt="Photo 10">
+                    <img src="photos/bg-10.jpg" alt="A girl riding on a wolf in a colorful field with a bright blue sky">
                 </div>
                 <div class="theme-item" data-type="photo" data-src="photos/bg-11.png">
-                    <img src="photos/bg-11.png" alt="Photo 11">
+                    <img src="photos/bg-11.png" alt="Anime drawing of a tree and house on a sloped hill">
                 </div>
             </div>            
         </div>
@@ -118,27 +171,30 @@
     </div>
 
 
-    <!-- Music Side Panel -->
+    <!-- --------------------------------MUSIC SIDE PANEL----------------------------------------- -->
+    <!-- ----------------------------------------------------------------------------------------- -->
     <div id="musicPanel" class="hidden">
-        <button id="closeMusicPanel">&times;</button>
+        <button id="closeMusicPanel" aria-label="Close Music Panel Button">&times;</button>
         <h2>Music</h2>
 
-        <div id="nowPlaying"></div>
 
         <div class="music-section">
             <h3>Chill Study</h3>
             
             <iframe 
+                class="music-iframe"
                 style="border-radius:12px" 
                 src="https://open.spotify.com/embed/playlist/0Bcj27aw78d1U9hLt4WK4u?utm_source=generator" 
                 width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy">
+                loading="lazy"
+                data-playlist-id="0Bcj27aw78d1U9hLt4WK4u">
             </iframe>       
             
             <iframe 
+                class="music-iframe"
                 style="border-radius:12px" 
                 src="https://open.spotify.com/embed/playlist/4tpc6aQQQXpZvnrWjd5bQB?utm_source=generator" 
                 width="100%" 
@@ -149,6 +205,7 @@
             </iframe>
 
             <iframe 
+                class="music-iframe"
                 style="border-radius:12px" 
                 src="https://open.spotify.com/embed/playlist/6Pm2a6RZd2MIUnoyjS1PJr?utm_source=generator" 
                 width="100%" 
@@ -162,6 +219,7 @@
         <div class="music-section">
             <h3>Ambience</h3>
             <iframe 
+                class="music-iframe"
                 style="border-radius:12px" 
                 src="https://open.spotify.com/embed/playlist/0y2nodSbxwfKhbzHEuWFM7?utm_source=generator" 
                 width="100%" 
@@ -172,6 +230,7 @@
             </iframe>
 
             <iframe 
+                class="music-iframe"
                 style="border-radius:12px" 
                 src="https://open.spotify.com/embed/playlist/473P7SEuWS5XywS7cxXkL0?utm_source=generator"
                 width="100%" 
@@ -182,6 +241,7 @@
             </iframe>
 
             <iframe 
+                class="music-iframe"
                 style="border-radius:12px" 
                 src="https://open.spotify.com/embed/playlist/6rN83mkuK7BwioH9qpHw7O?utm_source=generator"
                 width="100%" 
@@ -190,17 +250,12 @@
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                 loading="lazy">
             </iframe>
-
-            <!-- <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0y2nodSbxwfKhbzHEuWFM7?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/473P7SEuWS5XywS7cxXkL0?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6rN83mkuK7BwioH9qpHw7O?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
         </div>
 
         <div class="music-section">
             <h3>Lo-Fi</h3>
             <iframe 
+                class="music-iframe"
                 style="border-radius:12px" 
                 src="https://open.spotify.com/embed/playlist/2uDVS1t0HqMnczrWgA1xcJ?utm_source=generator"
                 width="100%" 
@@ -211,6 +266,7 @@
             </iframe>
 
             <iframe 
+                class="music-iframe"
                 style="border-radius:12px" 
                 src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator"
                 height="152" 
@@ -219,7 +275,8 @@
                 loading="lazy">
             </iframe>
 
-            <iframe 
+            <iframe
+                class="music-iframe" 
                 style="border-radius:12px" 
                 src="https://open.spotify.com/embed/playlist/4eWBwGl0c5wtp6k5Krp6My?utm_source=generator"
                 width="100%" 
@@ -228,20 +285,15 @@
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                 loading="lazy">
             </iframe>
-
-            <!-- <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2uDVS1t0HqMnczrWgA1xcJ?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4eWBwGl0c5wtp6k5Krp6My?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
             <br> <br> 
         </div>
     </div>
     
 
-    <!-- SOUND BUTTON -->
+    <!-- --------------------------------------SOUND PANEL --------------------------------------- -->
+    <!-- ----------------------------------------------------------------------------------------- -->
     <div id="soundPanel" class="hidden">
-        <button id="closeSoundPanel">&times;</button>
+        <button id="closeSoundPanel" aria-label="Close Sound Panel Button">&times;</button>
         <h2>Sounds</h2>
 
         <div class="sound-section">
@@ -315,7 +367,7 @@
             <div class="sound-card">
                 <h4>Soft Piano</h4>
                 <audio controls loop>
-                    <source src="sounds/calm-soft-piano.mp3" type="audio/mpeg">
+                    <source src="sounds/calm-piano.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
             </div>
@@ -331,6 +383,11 @@
         <br> <br> 
     </div>
 
+
+
+    <!-- -------------------------------------SETTINGS PANEL-------------------------------------- -->
+    <!-- ----------------------------------------------------------------------------------------- -->
+    
 
 
     <script src="js/script.js"></script>
