@@ -165,26 +165,77 @@ h1 {
     flex-grow: 1;
   }
   
-  .task-item {
+.task-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #eee;
-  }
+
+    /* display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 8px; */
+}
+
+.task-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
   
-  .task-item:last-child {
+.task-item:last-child {
     border-bottom: none;
-  }
-  
-  .delete-task {
+}
+
+.delete-task {
     color: #ff4444;
     background: none;
     border: none;
     cursor: pointer;
     padding: 5px;
-  }
 
+    /* color: rgba(255, 68, 68, 0.7);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.2s ease;
+    opacity: 0;
+    font-size: 14px; */
+}
+
+
+
+.task-item:hover .delete-task {
+    opacity: 1;
+}
+
+.delete-task:hover {
+    color: #ff4444;
+    transform: scale(1.1);
+}
+
+/* Scrollbar styling */
+#taskList::-webkit-scrollbar {
+    width: 6px;
+}
+
+#taskList::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+#taskList::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+#taskList::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
 
 
 /* ----------------------------POMODORO TIMER---------------------------- */
@@ -335,6 +386,7 @@ i {
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     color: white;
+    z-index: 2000;
 }
 
 #closePanelBtn {
@@ -669,9 +721,9 @@ body.panel-open::before {
     
     width: 60px;
     height: 50px;
-  }
+}
   
-  #gamePopup {
+#gamePopup {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -685,39 +737,47 @@ body.panel-open::before {
     backdrop-filter: blur(10px); 
     border-radius: 20px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  }
-  
-  #gamePopup.hidden {
+}
+
+#gamePopup.hidden {
     display: none;
-  }
+}
   
-  .game-popup-header {
+.game-popup-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-  }
-  
-  .game-popup-header h3 {
+
+    /* padding: 15px;
+    background: rgba(33, 61, 93, 0.9);
+    color: white;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; */
+}
+
+.game-popup-header h3 {
     margin: 0;
     color: #333;
-  }
+}
   
-  .game-status {
+.game-status {
     text-align: center;
     margin-bottom: 15px;
     font-weight: bold;
     color: #4CAF50;
-  }
-  
-  .game-board {
+}
+
+.game-board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 5px;
     margin-bottom: 15px;
-  }
-  
-  .game-cell {
+}
+
+.game-cell {
     width: 100%;
     height: 80px;
     background: rgba(204, 204, 204, 0.6);
@@ -728,13 +788,13 @@ body.panel-open::before {
     cursor: pointer;
     border-radius: 5px;
     transition: background 0.3s;
-  }
+}
   
-  .game-cell:hover {
+.game-cell:hover {
     background: rgba(215, 214, 214, 0.2);
-  }
-  
-  .reset-btn {
+}
+
+.reset-btn {
     width: 100%;
     padding: 10px;
     background-color: rgba(33, 61, 93, 0.9);;
@@ -743,8 +803,162 @@ body.panel-open::before {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-  }
-  
-  .reset-btn:hover {
+}
+
+.reset-btn:hover {
     background-color: rgba(47, 87, 134, 0.9);;
-  }
+}
+
+
+
+  /* settings */
+
+#settingsPanel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30%;     
+    height: 100%;
+    background: rgba(15, 23, 42, 0.70); 
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 2%;
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    overflow-y: auto;
+    box-sizing: border-box;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    color: white;
+}
+
+#closeSettingsPanel {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 3rem;
+    background: transparent;
+    border: none;
+    color: var(--teal-accent);
+    cursor: pointer;
+    z-index: 1001;
+}
+
+#closePanelBtn:hover {
+    color: var(--ghibli-green);
+}
+
+#settingsPanel h2 {
+    color: var(--teal-accent);
+    margin: 10px 0 25px;
+    font-size: 22px;
+    text-align: center;
+    position: relative;
+}
+
+#settingsPanel h2::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #5eead4, transparent);
+}
+
+#settingsPanel h3 {
+    color: var(--teal-accent);
+    margin: 20px 0 12px;
+    font-size: 16px;
+    padding-left: 10px;
+    border-left: 3px solid var(--text-light); 
+}
+
+#pomodoroTimer, #breakTimer {
+    margin-bottom: 25px;
+    background: rgba(51, 65, 85, 0.5); 
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#breakTimer:hover, #pomodoroTimer:hover  {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(92, 234, 212, 0.1);
+}
+
+
+#settingsPanel.show {
+    transform: translateX(0);
+}
+
+
+#settingsPanel::-webkit-scrollbar {
+    width: 6px;
+}
+
+#settingsPanel::-webkit-scrollbar-track {
+    background: rgba(30, 41, 59, 0.2);
+}
+
+#settingsPanel::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--teal-accent), var(--ghibli-green));
+    border-radius: 4px;
+}
+
+body.panel-open::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 999;
+}
+
+
+
+/* -------------------------------Bunny------------------------------ */
+/* ---------------------------------------------------------------------- */
+/* .bunny-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+}
+
+.bunny-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bunny-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.studying {
+    animation: bounce 2s infinite;
+}
+
+.resting {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+} */

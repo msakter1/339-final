@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     // -------------------------------TIMER----------------------------------
     // -----------------------------------------------------------------------
     let timer;
     let totalSeconds;
     let isRunning = false;
     let currentMode = 'pomodoro'; 
+    let breakMode;
+    let pomodoroDur;
+    let breakDuration = 5;
+
 
     const timerDisplay = document.getElementById('timer');
     const playPauseBtn = document.getElementById('playPause');
@@ -15,17 +18,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const longBreakBtn = document.getElementById('longBreakBtn');
     const rewindBtn = document.getElementById('rewind');
 
+
+    const studyBunny = document.getElementById('studyBunny');
+    const restBunny = document.getElementById('restBunny');
+
+
+
     // initialize timer
     function initTimer() {
         switch(currentMode) {
             case 'pomodoro':
-                totalSeconds = 25 * 60;
+                if(pomodoroDur > 25) {
+                    totalSeconds = pomodoroDur * 60;
+                }
+                else {
+                    totalSeconds = 25 * 60;
+                }
+                // studyBunny.classList.remove('hidden');
+                // restBunny.classList.add('hidden');
+                // studyBunny.classList.add('studying');
+                // restBunny.classList.remove('resting');
+
                 break;
+
             case 'shortBreak':
                 totalSeconds = 5 * 60;
+
+                // studyBunny.classList.add('hidden');
+                // restBunny.classList.remove('hidden');
+                // studyBunny.classList.remove('studying');
+                // restBunny.classList.add('resting');
+
                 break;
+
             case 'longBreak':
-                totalSeconds = 10 * 60;
+                totalSeconds = 10 * 60; // 10 * 60
+
+                // studyBunny.classList.add('hidden');
+                // restBunny.classList.remove('hidden');
+                // studyBunny.classList.remove('studying');
+                // restBunny.classList.add('resting');
+                
                 break;
         }
         updateDisplay();
@@ -52,7 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     playPauseIcon.classList.replace('fa-pause', 'fa-play');
                     
                     if (currentMode === 'pomodoro') {
-                        setMode('shortBreak');
+                        if (breakMode == "longBreak"){
+                            setMode('longBreak');
+                        }
+                        else {
+                            setMode('shortBreak');
+                        }
                     } else {
                         setMode('pomodoro');
                     }
@@ -87,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         switch(currentMode) {
             case 'pomodoro':
-                totalSeconds = 25 * 60;
+                totalSeconds = pomodoroDur * 60;
                 break;
             case 'shortBreak':
                 totalSeconds = 5 * 60;
@@ -221,7 +259,15 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTasks();
 
 
-
+    // taskList.addEventListener('click', e => {
+    //     if(e.target.tagName === 'LI') {
+    //         const tasks = JSON.parse(localStorage.getItem('tasks'));
+    //         const index = [...taskList.children].indexOf(e.target);
+    //         tasks[index].completed = !tasks[index].completed;
+    //         localStorage.setItem('tasks', JSON.stringify(tasks));
+    //         loadTasks();
+    //     }
+    // });
 
 
 
@@ -239,8 +285,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    
-    // theme button
+
+    // ------------------------------THEME----------------------------------
+    // -----------------------------------------------------------------------
     const videoSelectBtn = document.getElementById('videoSelectBtn');
     const themePanel = document.getElementById('themePanel');
     const backgroundVideo = document.getElementById('backgroundVideo');
@@ -361,150 +408,200 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetBtn = document.getElementById('resetGame');
    
        
-  let board = ['', '', '', '', '', '', '', '', ''];
-  let currentPlayer = 'X';
-  let gameActive = true;
-  
-  // winning conditions
-  const winningConditions = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
-    [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
-    [0, 4, 8], [2, 4, 6]             // diagonals
-  ];
-  
-  function initializeBoard() {
-    gameBoard.innerHTML = '';
-    for (let i = 0; i < 9; i++) {
-      const cell = document.createElement('div');
-      cell.classList.add('game-cell');
-      cell.setAttribute('data-index', i);
-      cell.addEventListener('click', handleCellClick);
-      gameBoard.appendChild(cell);
-    }
-  }
-  
-  function handleCellClick(e) {
-    const clickedCell = e.target;
-    const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index'));
+    let board = ['', '', '', '', '', '', '', '', ''];
+    let currentPlayer = 'X';
+    let gameActive = true;
     
-    if (board[clickedCellIndex] !== '' || !gameActive) return;
+    // winning conditions
+    const winningConditions = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+        [0, 4, 8], [2, 4, 6]             // diagonals
+    ];
     
-    makeMove(clickedCell, clickedCellIndex, currentPlayer);
-    
-    if (checkWin()) {
-      gameStatus.textContent = 'You win!';
-      gameActive = false;
-      return;
+    function initializeBoard() {
+        gameBoard.innerHTML = '';
+        for (let i = 0; i < 9; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('game-cell');
+        cell.setAttribute('data-index', i);
+        cell.addEventListener('click', handleCellClick);
+        gameBoard.appendChild(cell);
+        }
     }
     
-    if (checkDraw()) {
-      gameStatus.textContent = 'Game ended in a draw!';
-      gameActive = false;
-      return;    
-    }
-    
-    // AI move
-    setTimeout(() => {
-      if (gameActive) {
-        currentPlayer = 'O';
-        gameStatus.textContent = "AI's turn (O)";
+    function handleCellClick(e) {
+        const clickedCell = e.target;
+        const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index'));
         
+        if (board[clickedCellIndex] !== '' || !gameActive) return;
+        
+        makeMove(clickedCell, clickedCellIndex, currentPlayer);
+        
+        if (checkWin()) {
+        gameStatus.textContent = 'You win!';
+        gameActive = false;
+        return;
+        }
+        
+        if (checkDraw()) {
+        gameStatus.textContent = 'Game ended in a draw!';
+        gameActive = false;
+        return;    
+        }
+        
+        // AI move
         setTimeout(() => {
-          const aiMove = getAIMove();
-          const aiCell = gameBoard.children[aiMove];
-          makeMove(aiCell, aiMove, currentPlayer);
-          
-          if (checkWin()) {
-            gameStatus.textContent = 'AI wins!';
-            gameActive = false;
-            return;
-          }
-          
-          if (checkDraw()) {
-            gameStatus.textContent = 'Game ended in a draw!';
-            gameActive = false;
-            return;
-          }
-          
-          currentPlayer = 'X';
-          gameStatus.textContent = 'Your turn (X)';
-        }, 500);
-      }
-    }, 300);
-  }
-  
-  function makeMove(cell, index, player) {
-    board[index] = player;
-    cell.textContent = player;
-    cell.style.pointerEvents = 'none';
-  }
-  
-  function getAIMove() {
-    for (let i = 0; i < board.length; i++) {
-      if (board[i] === '') {
-        board[i] = 'O';
-        if (checkWin()) {
-          board[i] = '';
-          return i;
+        if (gameActive) {
+            currentPlayer = 'O';
+            gameStatus.textContent = "AI's turn (O)";
+            
+            setTimeout(() => {
+            const aiMove = getAIMove();
+            const aiCell = gameBoard.children[aiMove];
+            makeMove(aiCell, aiMove, currentPlayer);
+            
+            if (checkWin()) {
+                gameStatus.textContent = 'AI wins!';
+                gameActive = false;
+                return;
+            }
+            
+            if (checkDraw()) {
+                gameStatus.textContent = 'Game ended in a draw!';
+                gameActive = false;
+                return;
+            }
+            
+            currentPlayer = 'X';
+            gameStatus.textContent = 'Your turn (X)';
+            }, 500);
         }
-        board[i] = '';
-      }
+        }, 300);
     }
     
-    for (let i = 0; i < board.length; i++) {
-      if (board[i] === '') {
-        board[i] = 'X';
-        if (checkWin()) {
-          board[i] = '';
-          return i;
+    function makeMove(cell, index, player) {
+        board[index] = player;
+        cell.textContent = player;
+        cell.style.pointerEvents = 'none';
+    }
+    
+    function getAIMove() {
+        for (let i = 0; i < board.length; i++) {
+        if (board[i] === '') {
+            board[i] = 'O';
+            if (checkWin()) {
+            board[i] = '';
+            return i;
+            }
+            board[i] = '';
         }
-        board[i] = '';
-      }
+        }
+        
+        for (let i = 0; i < board.length; i++) {
+        if (board[i] === '') {
+            board[i] = 'X';
+            if (checkWin()) {
+            board[i] = '';
+            return i;
+            }
+            board[i] = '';
+        }
+        }
+        
+        if (board[4] === '') return 4;
+        
+        const corners = [0, 2, 6, 8];
+        const availableCorners = corners.filter(i => board[i] === '');
+        if (availableCorners.length > 0) {
+        return availableCorners[Math.floor(Math.random() * availableCorners.length)];
+        }
+        
+        const availableSpots = board.map((spot, index) => spot === '' ? index : null).filter(val => val !== null);
+        return availableSpots[Math.floor(Math.random() * availableSpots.length)];
     }
     
-    if (board[4] === '') return 4;
-    
-    const corners = [0, 2, 6, 8];
-    const availableCorners = corners.filter(i => board[i] === '');
-    if (availableCorners.length > 0) {
-      return availableCorners[Math.floor(Math.random() * availableCorners.length)];
+    function checkWin() {
+        return winningConditions.some(condition => {
+        return condition.every(index => {
+            return board[index] === currentPlayer;
+        });
+        });
     }
     
-    const availableSpots = board.map((spot, index) => spot === '' ? index : null).filter(val => val !== null);
-    return availableSpots[Math.floor(Math.random() * availableSpots.length)];
-  }
-  
-  function checkWin() {
-    return winningConditions.some(condition => {
-      return condition.every(index => {
-        return board[index] === currentPlayer;
-      });
-    });
-  }
-  
-  function checkDraw() {
-    return board.every(cell => cell !== '');
-  }
-  
-  function resetGame() {
-    board = ['', '', '', '', '', '', '', '', ''];
-    currentPlayer = 'X';
-    gameActive = true;
-    gameStatus.textContent = 'Your turn (X)';
+    function checkDraw() {
+        return board.every(cell => cell !== '');
+    }
+    
+    function resetGame() {
+        board = ['', '', '', '', '', '', '', '', ''];
+        currentPlayer = 'X';
+        gameActive = true;
+        gameStatus.textContent = 'Your turn (X)';
+        initializeBoard();
+    }
+    
+    function toggleGamePopup() {
+        gamePopup.classList.toggle('hidden');
+        if (!gamePopup.classList.contains('hidden')) {
+        resetGame();
+        }
+    }
+    
+    gameBtn.addEventListener('click', toggleGamePopup);
+    closeGameBtn.addEventListener('click', toggleGamePopup);
+    resetBtn.addEventListener('click', resetGame);
+    
     initializeBoard();
-  }
-  
-  function toggleGamePopup() {
-    gamePopup.classList.toggle('hidden');
-    if (!gamePopup.classList.contains('hidden')) {
-      resetGame();
-    }
-  }
-  
-  gameBtn.addEventListener('click', toggleGamePopup);
-  closeGameBtn.addEventListener('click', toggleGamePopup);
-  resetBtn.addEventListener('click', resetGame);
-  
-  initializeBoard();
+
+
+
+
+    //   -----------------------------------SETTINGS---------------------------------------------
+    //   ----------------------------------------------------------------------------------------
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsPannel = document.getElementById('settingsPanel');
+    const closeSettingsPanel = document.getElementById('closeSettingsPanel');
+    const saveSettings = document.getElementById('saveSettings');
+
+    settingsBtn.addEventListener('click', () => {
+        settingsPannel.classList.toggle('show');
+        document.body.classList.toggle('panel-open');
+    });
+
+    closeSettingsPanel.addEventListener('click', () => {
+        settingsPannel.classList.remove('show');
+        document.body.classList.remove('panel-open');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (settingsPannel.classList.contains('show')) {
+            if (!settingsPannel.contains(e.target) && !settingsBtn.contains(e.target)) {
+                settingsPannel.classList.remove('show');
+                document.body.classList.remove('panel-open');
+            }
+        }
+    });
+
+    saveSettings.addEventListener('click', () => {
+        pomodoroDur = parseInt(document.getElementById('pomodoroDuration').value);
+        breakDuration = parseInt(document.getElementById('breakDuration').value);
     
+        if (currentMode === 'pomodoro') {
+            totalSeconds = pomodoroDur * 60;  // pomodoroDuration * 60
+        } 
+        else {
+            totalSeconds = breakDuration * 60;
+        }
+
+        if (breakDuration == 10) {
+            breakMode = 'longBreak';
+        }
+        else {
+            breakMode = 'shortBreak';
+        }
+    
+        updateDisplay();
+        settingsPanel.classList.add('hidden');
+    });
 });

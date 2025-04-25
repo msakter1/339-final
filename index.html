@@ -10,7 +10,8 @@
 </head>
 <body>
     <video autoplay muted loop id="backgroundVideo"></video>
-    <h1 class="title-overlay">Cozy Study Time</h1>
+    <h1 class="title-overlay" tabindex="0">Cozy Study Time</h1>
+
 
     <!-- ----------------------------GAME----------------------------------- -->
     <button id="gameBtn" class="top-right-btn" aria-label="Open Games">
@@ -30,28 +31,52 @@
     </div>
 
     <!-- -----------------------------TASK LIST----------------------------- -->
+    <!-- ------------------------------------------------------------------- -->
+
+    <!-- <div class="center-timer">
+        <div id="taskPopup" class="hidden">
+            <div class="task-popup-header">
+                <h3>Task List</h3>
+                <button id="closeTaskPopup" class="close-btn" aria-label="Note Close Button">&times;</button>
+            </div>
+            <div class="task-popup-content">
+                <div class="task-input-container">
+                    <input type="text" id="newTaskInput" placeholder="Add a new task..." aria-label="Enter in a Task Button">
+                    <button id="addTaskBtn" aria-label="Note Add Button"><i class="fas fa-plus"></i></button>
+                </div>
+                <ul id="taskList"></ul>
+            </div>
+        </div>
+    </div> -->
+    
     <div id="taskPopup" class="hidden">
         <div class="task-popup-header">
-          <h3>Task List</h3>
-          <button id="closeTaskPopup" class="close-btn" aria-label="Note Close Button">&times;</button>
+            <h3>Task List</h3>
+            <button id="closeTaskPopup" class="close-btn" aria-label="Close Task List" tabindex="0">&times;</button>
         </div>
         <div class="task-popup-content">
-          <div class="task-input-container">
-            <input type="text" id="newTaskInput" placeholder="Add a new task..." aria-label="Enter in a Task Button">
-            <button id="addTaskBtn" aria-label="Note Add Button"><i class="fas fa-plus"></i></button>
-          </div>
-          <ul id="taskList"></ul>
+            <div class="task-input-container">
+                <input type="text" id="newTaskInput" placeholder="Add a new task..." 
+                       aria-label="Enter a new task" tabindex="0">
+                <button id="addTaskBtn" aria-label="Add task" tabindex="0">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            <ul id="taskList" tabindex="0"></ul>
         </div>
-      </div>
+    </div>
+    
 
 
     <!-- -------------------------POMODORO TIMER---------------------------- -->
+    <!-- ------------------------------------------------------------------- -->
+
     <div class="center-timer">
         <div class="timer-container">
             <div class="mode-buttons">
                 <button class="active" id="pomodoroBtn" onclick="setMode('pomodoro')">Pomodoro</button>
-                <button id="shortBreakBtn" onclick="setMode('short')">Short Break</button>
-                <button id="longBreakBtn" onclick="setMode('long')">Long Break</button>
+                <button id="shortBreakBtn" onclick="setMode('shortBreak')">Short Break</button>
+                <button id="longBreakBtn" onclick="setMode('longBreak')">Long Break</button>
             </div>
             
             <div class="timer-display" id="timer">25:00</div>
@@ -70,9 +95,14 @@
 
 
     <!-- --------------------------BUNNY ICON-------------------------------- -->
-
-
-
+    <!-- <div class="bunny-container">
+        <div id="studyBunny" class="bunny-animation hidden">
+            <img src="study-bunny.gif" alt="Bunny studying" class="bunny-image">
+        </div>
+        <div id="restBunny" class="bunny-animation hidden">
+            <img src="rest-bunny.gif" alt="Bunny resting" class="bunny-image">
+        </div>
+    </div> -->
 
      <!-- ---------------------------------------BUTTONS----------------------------------------- -->
     <div id="bottom">
@@ -269,6 +299,7 @@
                 class="music-iframe"
                 style="border-radius:12px" 
                 src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator"
+                width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
@@ -387,7 +418,31 @@
 
     <!-- -------------------------------------SETTINGS PANEL-------------------------------------- -->
     <!-- ----------------------------------------------------------------------------------------- -->
-    
+    <div id="settingsPanel" class="hidden">
+        <button id="closeSettingsPanel" aria-label="Close Settings Panel Button">&times;</button>
+        <h2>Settings</h2>
+
+        <div id="pomodoroTimer">
+            <label for="pomodoroDuration">Pomodoro Duration:</label>
+            <select id="pomodoroDuration">
+                <option value="25">25 min</option>
+                <option value="30">30 min</option>
+                <option value="35">35 min</option>
+                <option value="40">40 min</option>
+            </select>
+        </div>
+
+        <div id="breakTimer">
+            <label for="breakDuration">Break Duration:</label>
+            <select id="breakDuration">
+                <option value="5">5 min</option>
+                <option value="10">10 min</option>
+            </select>    
+        </div>
+       
+        <button id="saveSettings">Save</button>
+    </div>
+
 
 
     <script src="js/script.js"></script>
