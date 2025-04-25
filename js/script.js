@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const rewindBtn = document.getElementById('rewind');
 
 
-    const studyBunny = document.getElementById('studyBunny');
-    const restBunny = document.getElementById('restBunny');
+    // const studyBunny = document.getElementById('studyBunny');
+    // const restBunny = document.getElementById('restBunny');
 
 
 
@@ -113,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         longBreakBtn.classList.remove('active');
         document.getElementById(`${mode}Btn`).classList.add('active');
         
-        // TODO: When I click through the buttons it auto-starts
         initTimer();
         pauseTimer();
         updateDisplay();
@@ -215,8 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
             li.className = 'task-item';
             li.innerHTML = `
                 <span>${task}</span>
-                <button class="delete-task" data-index="${index}">
-                <i class="fa fa-close"></i>
+                <button class="delete-task" data-index="${index}" aria-label="Close Task List">
+                <i class="fa fa-close"></i> 
                 </button>
             `;
             taskList.appendChild(li);
@@ -257,21 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     renderTasks();
-
-
-    // taskList.addEventListener('click', e => {
-    //     if(e.target.tagName === 'LI') {
-    //         const tasks = JSON.parse(localStorage.getItem('tasks'));
-    //         const index = [...taskList.children].indexOf(e.target);
-    //         tasks[index].completed = !tasks[index].completed;
-    //         localStorage.setItem('tasks', JSON.stringify(tasks));
-    //         loadTasks();
-    //     }
-    // });
-
-
-
-
 
 
     // ------------------------------BUTTONS----------------------------------
