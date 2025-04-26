@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // ----------------------------TODO LIST----------------------------------
+    // ----------------------------TASK LIST----------------------------------
     // -----------------------------------------------------------------------
     const noteBtn = document.getElementById('noteBtn');
     const taskPopup = document.getElementById('taskPopup');
@@ -192,9 +192,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function togglePopup() {
         taskPopup.classList.toggle('hidden');
+        // taskPopup.focus();
         
         if (!taskPopup.classList.contains('hidden')) {
-        bringToFront(taskPopup);
+            bringToFront(taskPopup);
         }
     }
     
@@ -280,6 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
     videoSelectBtn.addEventListener('click', () => {
         themePanel.classList.toggle('show');
         document.body.classList.toggle('panel-open');
+
+        themePanel.focus();
     });
 
     closePanelBtn.addEventListener('click', () => {
@@ -340,10 +343,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // music button
+    //----------------------------- music button----------------------------
+    // ---------------------------------------------------------------------
+
     musicBtn.addEventListener('click', () => {
         musicPanel.classList.toggle('show');
         document.body.classList.toggle('panel-open');
+
+        musicPanel.focus();
     });
  
     closeMusicPanel.addEventListener('click', () => {
@@ -361,10 +368,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // Sound button
+    // -------------------------Sound button---------------------------------
+    // ----------------------------------------------------------------------
     soundBtn.addEventListener('click', () => {
         soundPanel.classList.toggle('show');
         document.body.classList.toggle('panel-open');
+
+        // soundPanel.classList.remove("hidden");
+        soundPanel.focus();
     });
  
     closeSoundPanel.addEventListener('click', () => {
@@ -423,15 +434,15 @@ document.addEventListener('DOMContentLoaded', () => {
         makeMove(clickedCell, clickedCellIndex, currentPlayer);
         
         if (checkWin()) {
-        gameStatus.textContent = 'You win!';
-        gameActive = false;
-        return;
+            gameStatus.textContent = 'You win!';
+            gameActive = false;
+            return;
         }
         
         if (checkDraw()) {
-        gameStatus.textContent = 'Game ended in a draw!';
-        gameActive = false;
-        return;    
+            gameStatus.textContent = 'Game ended in a draw!';
+            gameActive = false;
+            return;    
         }
         
         // AI move
@@ -475,8 +486,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (board[i] === '') {
             board[i] = 'O';
             if (checkWin()) {
-            board[i] = '';
-            return i;
+                board[i] = '';
+                return i;
             }
             board[i] = '';
         }
@@ -551,6 +562,8 @@ document.addEventListener('DOMContentLoaded', () => {
     settingsBtn.addEventListener('click', () => {
         settingsPannel.classList.toggle('show');
         document.body.classList.toggle('panel-open');
+
+        settingsPannel.focus();
     });
 
     closeSettingsPanel.addEventListener('click', () => {

@@ -131,13 +131,13 @@
 
         <!-- ----------------------------------Theme Side Panel--------------------------------------- -->
         <!-- ----------------------------------------------------------------------------------------- -->
-        <div id="themePanel" class="hidden">
+        <div id="themePanel" class="hidden" tabindex="0">
             <button id="closePanelBtn" aria-label="Close Theme Panel Button">&times;</button>
             <h2>Theme Options</h2>
 
             <div class="theme-section">
                 <h3>Videos</h3>
-                <div class="theme-options">
+                <div class="theme-options" tabindex="0">
                     <button class="theme-item" aria-label="Video Background Button" data-type="video" data-src="videos/snow.mp4">
                         <video src="videos/snow.mp4" muted loop playsinline></video>
                     </button>
@@ -162,49 +162,49 @@
         
             <div class="theme-section">
                 <h3>Photos</h3>
-                <div class="theme-options">
-                    <div class="theme-item" data-type="photo" data-src="photos/bg-1.png">
+                <div class="theme-options" tabindex="0">
+                    <div class="theme-item" data-type="photo" data-src="photos/bg-1.png" tabindex="0">
                         <img src="photos/bg-1.png" alt="Toroto from Kiki's Delivery Service Sitting underneath a shed">
                     </div>
-                    <div class="theme-item" data-type="photo" data-src="photos/bg-2.png">
+                    <div class="theme-item" data-type="photo" data-src="photos/bg-2.png" tabindex="0">
                         <img src="photos/bg-2.png" alt="Totoro from Kiki's delivery Service in the rain under a umbrella">
                     </div>
-                    <div class="theme-item" data-type="photo" data-src="photos/bg-3.png">
+                    <div class="theme-item" data-type="photo" data-src="photos/bg-3.png" tabindex="0">
                         <img src="photos/bg-3.png" alt="Totoro from Kiki's delivery service in a straw hat sitting underneath a tree">
                     </div>
-                    <div class="theme-item" data-type="photo" data-src="photos/bg-4.png">
+                    <div class="theme-item" data-type="photo" data-src="photos/bg-4.png" tabindex="0">
                         <img src="photos/bg-4.png" alt="Totoro from Kiki's delivery service in a meadow of flowers">
                     </div>
-                    <div class="theme-item" data-type="photo" data-src="photos/bg-5.jpeg">
+                    <div class="theme-item" data-type="photo" data-src="photos/bg-5.jpeg" tabindex="0">
                         <img src="photos/bg-5.jpeg" alt="a girl painting in a field under a umbrella shade">
                     </div>
-                    <div class="theme-item" data-type="photo" data-src="photos/bg-6.png">
+                    <div class="theme-item" data-type="photo" data-src="photos/bg-6.png" tabindex="0">
                         <img src="photos/bg-6.png" alt="anime drawing of a house on a hill with a bright blue sky">
                     </div>
-                    <div class="theme-item" data-type="photo" data-src="photos/bg-7.png">
+                    <div class="theme-item" data-type="photo" data-src="photos/bg-7.png" tabindex="0">
                         <img src="photos/bg-7.png" alt="An artistic drawing of a robot in a shore looking up at a floating castle">
                     </div>
-                    <div class="theme-item" data-type="photo" data-src="photos/bg-8.jpg">
+                    <div class="theme-item" data-type="photo" data-src="photos/bg-8.jpg" tabindex="0">
                         <img src="photos/bg-8.jpg" alt="A girl and boy flying on a flying machine looking at the floating castle in the sky ">
                     </div>
-                    <div class="theme-item" data-type="photo" data-src="photos/bg-9.jpg">
+                    <div class="theme-item" data-type="photo" data-src="photos/bg-9.jpg" tabindex="0">
                         <img src="photos/bg-9.jpg" alt="A girl riding on a wolf with a spear on her hand in a blue glowing field">
                     </div>
-                    <div class="theme-item" data-type="photo" data-src="photos/bg-10.jpg">
+                    <div class="theme-item" data-type="photo" data-src="photos/bg-10.jpg" tabindex="0">
                         <img src="photos/bg-10.jpg" alt="A girl riding on a wolf in a colorful field with a bright blue sky">
                     </div>
-                    <div class="theme-item" data-type="photo" data-src="photos/bg-11.png">
+                    <div class="theme-item" data-type="photo" data-src="photos/bg-11.png" tabindex="0">
                         <img src="photos/bg-11.png" alt="Anime drawing of a tree and house on a sloped hill">
                     </div>
                 </div>            
             </div>
         
-            <div class="theme-section">
+            <div class="theme-section" >
                 <h3>Solid Colors</h3>
-                <div class="theme-options">
-                    <div class="theme-item" style="background-color: #3f8686;" data-type="color" data-src="#3f8686"></div>
-                    <div class="theme-item" style="background-color: #487a4e;" data-type="color" data-src="#487a4e"></div>
-                    <div class="theme-item" style="background-color: #c16464;" data-type="color" data-src="#c16464"></div>
+                <div class="theme-options" tabindex="0">
+                    <div class="theme-item" style="background-color: #35759f;" data-type="color" data-src="#35759f" tabindex="0"></div>
+                    <div class="theme-item" style="background-color: #9670c6;" data-type="color" data-src="#9670c6" tabindex="0"></div>
+                    <div class="theme-item" style="background-color: #57aa7f;" data-type="color" data-src="#57aa7f" tabindex="0"></div>
                 </div>
             </div>
         </div>
@@ -212,12 +212,12 @@
 
         <!-- --------------------------------MUSIC SIDE PANEL----------------------------------------- -->
         <!-- ----------------------------------------------------------------------------------------- -->
-        <div id="musicPanel" class="hidden">
-            <button id="closeMusicPanel" aria-label="Close Music Panel Button">&times;</button>
+        <div id="musicPanel" class="hidden" tabindex="-1">
+            <button id="closeMusicPanel" aria-label="Close Music Panel Button" tabindex="0">&times;</button>
             <h2>Music</h2>
 
 
-            <div class="music-section">
+            <div class="music-section" tabindex="0">
                 <h3>Chill Study</h3>
                 
                 <iframe 
@@ -230,7 +230,9 @@
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                     loading="lazy"
                     data-playlist-id="0Bcj27aw78d1U9hLt4WK4u"
-                    title="Chill study playlist 1">
+                    title="Chill study playlist 1"
+                    tabindex="0">
+                    
                 </iframe>       
                 
                 <iframe 
@@ -242,7 +244,8 @@
                     frameBorder="0" 
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                     loading="lazy"
-                    title="Chill study playlist 2">
+                    title="Chill study playlist 2"
+                    tabindex="0">
                 </iframe>
 
                 <iframe 
@@ -254,11 +257,12 @@
                     frameBorder="0" 
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                     loading="lazy"
-                    title="Chill study playlist">
+                    title="Chill study playlist"
+                    tabindex="0">
                 </iframe>
             </div>
 
-            <div class="music-section">
+            <div class="music-section" tabindex="0">
                 <h3>Ambience</h3>
 
                 <iframe 
@@ -271,8 +275,8 @@
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                     loading="lazy"
                     title="Ambience playlist"
-                    aria-label="Ambience playlist 1">
-        
+                    aria-label="Ambience playlist 1"
+                    tabindex="0">
                 </iframe>
 
                 <iframe 
@@ -285,7 +289,8 @@
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                     loading="lazy"
                     title="Ambience playlist"
-                    aria-label="Ambience playlist 2">
+                    aria-label="Ambience playlist 2"
+                    tabindex="0">
                 </iframe>
 
                 <iframe 
@@ -298,11 +303,12 @@
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                     loading="lazy"
                     title="Ambience playlist"
-                    aria-label="Ambience playlist 3">
+                    aria-label="Ambience playlist 3"
+                    tabindex="0">
                 </iframe>
             </div>
 
-            <div class="music-section">
+            <div class="music-section" tabindex="0">
                 <h3>Lo-Fi</h3>
                 <iframe 
                     class="music-iframe"
@@ -313,7 +319,8 @@
                     frameBorder="0" 
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                     loading="lazy"
-                    title="Lo-fi playlist">
+                    title="Lo-fi playlist"
+                    tabindex="0">
                 </iframe>
 
                 <iframe 
@@ -325,7 +332,8 @@
                     frameBorder="0" 
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                     loading="lazy"
-                    title="Lo-fi playlist">
+                    title="Lo-fi playlist"
+                    tabindex="0">
                 </iframe>
 
                 <iframe
@@ -337,7 +345,8 @@
                     frameBorder="0" 
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                     loading="lazy"
-                    title="Lo-fi playlist">
+                    title="Lo-fi playlist"
+                    tabindex="0">
                 </iframe>
                 <br> <br> 
             </div>
@@ -346,89 +355,89 @@
 
         <!-- --------------------------------------SOUND PANEL --------------------------------------- -->
         <!-- ----------------------------------------------------------------------------------------- -->
-        <div id="soundPanel" class="hidden" tabindex="0">
+        <div id="soundPanel" class="hidden" tabindex="-1">
             <button id="closeSoundPanel" aria-label="Close Sound Panel Button" tabindex="0">&times;</button>
             <h2>Sounds</h2>
 
-            <div class="sound-section">
+            <div class="sound-section" tabindex="0">
                 <h3>Nature Sounds</h3>
 
                 <div class="sound-card" tabindex="0">
                     <h4>Ocean Waves</h4>
-                    <audio controls loop>
+                    <audio controls loop tabindex="0">
                         <source src="sounds/nature-ocean-waves.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
 
-                <div class="sound-card">
+                <div class="sound-card" tabindex="0">
                     <h4>Rain</h4>
-                    <audio controls loop >
+                    <audio controls loop tabindex="0">
                         <source src="sounds/nature-rain.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
 
-                <div class="sound-card">
+                <div class="sound-card" tabindex="0">
                     <h4>Stream</h4>
-                    <audio controls loop>
+                    <audio controls loop tabindex="0">
                         <source src="sounds/nature-stream.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
             </div>
 
-            <div class="sound-section">
+            <div class="sound-section" tabindex="0">
                 <h3>Noises</h3>
 
-                <div class="sound-card">
+                <div class="sound-card" tabindex="0">
                     <h4>Brown</h4>
-                    <audio controls loop>
+                    <audio controls loop tabindex="0">
                         <source src="sounds/noise-brown.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
 
-                <div class="sound-card">
+                <div class="sound-card" tabindex="0">
                     <h4>Pink</h4>
-                    <audio controls loop>
+                    <audio controls loop tabindex="0">
                         <source src="sounds/noise-pink.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
             
 
-                <div class="sound-card">
+                <div class="sound-card" tabindex="0">
                     <h4>White</h4>
-                    <audio controls loop>
+                    <audio controls loop tabindex="0">
                         <source src="sounds/noise-white.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
             </div>
 
-            <div class="sound-section">
+            <div class="sound-section" tabindex="0">
                 <h3>Other Sounds</h3>
 
-                <div class="sound-card">
+                <div class="sound-card" tabindex="0">
                     <h4>Music Box</h4>
-                    <audio controls loop>
+                    <audio controls loop tabindex="0">
                         <source src="sounds/calm-music-box.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
 
-                <div class="sound-card">
+                <div class="sound-card" tabindex="0">
                     <h4>Soft Piano</h4>
-                    <audio controls loop>
+                    <audio controls loop tabindex="0">
                         <source src="sounds/calm-piano.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
 
-                <div class="sound-card">
+                <div class="sound-card" tabindex="0">
                     <h4>Lullaby</h4>
-                    <audio controls loop>
+                    <audio controls loop tabindex="0">
                         <source src="sounds/calm-spanish-lullaby.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
@@ -441,13 +450,13 @@
 
         <!-- -------------------------------------SETTINGS PANEL-------------------------------------- -->
         <!-- ----------------------------------------------------------------------------------------- -->
-        <div id="settingsPanel" class="hidden">
+        <div id="settingsPanel" class="hidden" tabindex="0">
             <button id="closeSettingsPanel" aria-label="Close Settings Panel Button">&times;</button>
             <h2>Settings</h2>
 
-            <div id="pomodoroTimer">
+            <div id="pomodoroTimer" tabindex="0">
                 <label for="pomodoroDuration">Pomodoro Duration:</label>
-                <select id="pomodoroDuration">
+                <select id="pomodoroDuration" tabindex="0">
                     <option value="25">25 min</option>
                     <option value="30">30 min</option>
                     <option value="35">35 min</option>
@@ -457,7 +466,7 @@
 
             <div id="breakTimer">
                 <label for="breakDuration">Break Duration:</label>
-                <select id="breakDuration">
+                <select id="breakDuration" tabindex="0">
                     <option value="5">5 min</option>
                     <option value="10">10 min</option>
                 </select>    
